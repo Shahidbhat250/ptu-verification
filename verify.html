@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Verification</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Certificate Verification</h1>
+        <p>Certificate Status: <span id="status"></span></p>
+        <img id="certificate" src="" alt="Certificate Image" style="max-width: 100%;">
+
+        <script>
+            // Get the certificate name from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const certName = urlParams.get('cert');
+
+            // Set the certificate image source
+            const certImage = document.getElementById('certificate');
+            certImage.src = 'certificates/' + certName;
+
+            // Check if certificate exists
+            const status = document.getElementById('status');
+            certImage.onload = function() {
+                status.textContent = 'Verified';
+            };
+            certImage.onerror = function() {
+                status.textContent = 'Not Found';
+            };
+        </script>
+    </div>
+</body>
+</html>
